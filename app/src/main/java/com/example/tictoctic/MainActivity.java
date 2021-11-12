@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,15 +31,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
       Button b=(Button)v;
-      if(turn%2==1){
-          b.setBackgroundResource(R.drawable.x);
-          b.setText("");
+        TextView t=(TextView) this.findViewById(R.id.textView);
+      if(b.getText()!="") {
+          if (turn % 2 == 1) {
+              b.setBackgroundResource(R.drawable.x);
+              b.setText("");
+              t.setText("Now is X, circle is next");
 
+
+          } else {
+              b.setBackgroundResource(R.drawable.c);
+              b.setText("");
+              t.setText("Now is circle, X is next");
+          }
+          turn++;
       }
       else{
-          b.setBackgroundResource(R.drawable.c);
-          b.setText("");
+          Toast.makeText(getApplicationContext(),"Please select another button",Toast.LENGTH_LONG).show();
+
       }
-      turn++;
     }
 }
